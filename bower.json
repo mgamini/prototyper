@@ -1,0 +1,22 @@
+{
+  "name": "prototyper",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kadjar/prototyper",
+  "authors": [
+    "Garrett Amini <kadjar@gmail.com>"
+  ],
+  "license": "WTFPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.16",
+    "angular-route": "~1.2.16",
+    "angular-classy": "~0.4.2"
+  }
+}
