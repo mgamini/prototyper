@@ -5,3 +5,29 @@ body {
 a {
   color: #00b7ff;
 }
+slides {
+  display: block;
+  position: relative;
+}
+slides slide {
+  position: absolute;
+  display: block;
+}
+slide {
+  background: #fff;
+}
+.ipad.landscape {
+  background: url("../img/ipad-landscape.png") top center no-repeat;
+  height: 758px;
+  width: 980px;
+}
+.ipad.landscape slide {
+  height: 583px;
+  width: 775px;
+  top: 44px;
+  left: 106px;
+  border-radius: 3px;
+}
+.slide-slide_01 {
+  background: #f00;
+}

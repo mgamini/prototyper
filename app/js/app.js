@@ -72,13 +72,14 @@ App.directive('slide', function() {
           }
         }
     }),
-    link: function(s,e,a) {
+    link: function(s,e,a) {      
       s.getSlideUrl = function() {
         return '../slides/' + this.slide.slide + '.html';
       }
+      s.deriveClass = function() { return 'slide-' + this.slide.slide }
     },
 
-    template: '<slide ng-include="getSlideUrl()" ng-show="slide.show"></slide>'
+    template: '<slide ng-include="getSlideUrl()" ng-class="deriveClass()" ng-show="slide.show"></slide>'
   }
 })
 
