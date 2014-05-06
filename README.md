@@ -12,3 +12,6 @@ prototyper
 - `bower install`
 - `npm start`
 - browse to `localhost:3000`
+
+##see it in action
+http://static.garrettamini.com/prototyper/
