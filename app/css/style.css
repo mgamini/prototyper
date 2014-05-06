@@ -1,9 +1,25 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 a {
   color: #00b7ff;
+}
+.group {
+  float: left;
+  width: 100%;
+}
+#log {
+  float: left;
+  color: #ccc;
+}
+#log >li:first-child {
+  color: #000;
 }
 slides {
   display: block;
@@ -16,6 +32,26 @@ slides slide {
 }
 slide {
   background: #fff;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+slide div {
+  position: absolute;
+  display: block;
+  height: 100px;
+  width: 100px;
+}
+slide div.test {
+  background: rgba(255,0,0,0.3);
+}
+.full-slide {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.click {
+  cursor: pointer;
 }
 .ipad.landscape {
   background: url("../img/ipad-landscape.png") top center no-repeat;
@@ -29,8 +65,102 @@ slide {
   left: 106px;
   border-radius: 3px;
 }
-.slide-slide_01 {
-  background: #f00;
+.slide-splash {
+  background-image: url("../img/slides/DaemonInitFlow_Splash.png");
+}
+.slide-newaccount {
+  background-image: url("../img/slides/DaemonInitFlow_NewAccount.png");
+}
+.slide-newaccount > .go {
+  top: 340px;
+  left: 290px;
+  width: 200px;
+}
+.slide-newaccount > .gear {
+  bottom: 10px;
+  right: 10px;
+}
+.slide-auth_googleplay {
+  background-image: url("../img/slides/DaemonInitFlow_AuthGooglePlay.png");
+}
+.slide-auth_googleplay > .yes {
+  top: 375px;
+  right: 110px;
+  width: 200px;
+}
+.slide-auth_googleplay > .no {
+  top: 375px;
+  left: 160px;
+  width: 200px;
+}
+.slide-auth_gamecenter {
+  background-image: url("../img/slides/DaemonInitFlow_AuthGamecenter.png");
+}
+.slide-auth_gamecenter > .yes {
+  top: 375px;
+  right: 110px;
+  width: 200px;
+}
+.slide-auth_gamecenter > .no {
+  top: 375px;
+  left: 160px;
+  width: 200px;
+}
+.slide-auth_facebook {
+  background-image: url("../img/slides/DaemonInitFlow_AuthFacebook.png");
+}
+.slide-auth_facebook > .yes {
+  top: 375px;
+  right: 110px;
+  width: 200px;
+}
+.slide-auth_facebook > .no {
+  top: 375px;
+  left: 160px;
+  width: 200px;
+}
+.slide-retrieve_android {
+  background-image: url("../img/slides/DaemonInitFlow_RetrieveAndroid.png");
+}
+.slide-retrieve_android > .android {
+  top: 170px;
+  height: 160px;
+  left: 280px;
+  width: 210px;
+}
+.slide-retrieve_android > .facebook {
+  top: 394px;
+  left: 133px;
+  width: 500px;
+}
+.slide-retrieve_ios {
+  background-image: url("../img/slides/DaemonInitFlow_RetrieveiOS.png");
+}
+.slide-retrieve_ios > .ios {
+  top: 170px;
+  height: 160px;
+  left: 340px;
+  width: 140px;
+}
+.slide-retrieve_ios > .facebook {
+  top: 394px;
+  left: 133px;
+  width: 500px;
+}
+.slide-game {
+  background-image: url("../img/slides/DaemonInitFlow_Game.png");
+}
+.slide-game > .startover {
+  bottom: 0px;
+  width: 180px;
+}
+.slide-game > .gear {
+  bottom: 0px;
+  right: 0px;
+  width: 130px;
+}
+.slide-config {
+  padding: 100px;
 }
 #wrapper {
   float: left;
@@ -49,7 +179,7 @@ slide {
   border: 1px solid #c0c0c0;
   display: block;
   float: left;
-  margin: 100px;
+  margin-bottom: 100px;
 }
 .json-explorer ul {
   list-style-type: none;

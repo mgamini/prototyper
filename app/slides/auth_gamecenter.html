@@ -1,0 +1,29 @@
+<div class="click yes" ng-click="next('yes')"></div>
+<div class="click no" ng-click="next('no')"></div>
+
+<script eval type="text/javascript">
+  function(value) {
+    var res = false;
+    var parent = this.$parent.$parent;
+
+    switch (value) {
+      case "yes":
+        parent.log('gamecenter authorized, redirecting to ' + parent.redirectTo.pass)
+        if (parent.oauth.gamecenter === "out-no-account") {
+          parent.oauth.gamecenter = "in-no-account"
+          res = parent.redirectTo.pass
+        }
+        else {
+          parent.oauth.gamecenter = "in-has-account"
+          res = 'game'
+        }        
+        break;    
+      case "no":
+        parent.log('gamecenter auth declined, redirecting to ' + parent.redirectTo.fail)
+        res = parent.redirectTo.fail
+        break;  
+    }
+
+    return res
+  }  
+</script>

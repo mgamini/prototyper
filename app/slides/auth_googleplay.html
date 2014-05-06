@@ -1,0 +1,26 @@
+<div class="click yes" ng-click="next('yes')"></div>
+<div class="click no" ng-click="next('no')"></div>
+
+<script eval type="text/javascript">
+  function(value) {
+    var res = false;
+    var parent = this.$parent.$parent;
+
+    switch (value) {
+      case "yes":
+        parent.log('googleplay authorized, redirecting to ' + parent.redirectTo.pass)
+        if (parent.oauth.googleplay = "out-no-account")
+          parent.oauth.googleplay = "in-no-account"
+        else 
+          parent.oauth.googleplay = "in-has-account"
+        res = parent.redirectTo.pass
+        break;    
+      case "no":
+        parent.log('googleplay auth declined, redirecting to ' + parent.redirectTo.fail)
+        res = parent.redirectTo.fail
+        break;  
+    }
+
+    return res
+  }  
+</script>

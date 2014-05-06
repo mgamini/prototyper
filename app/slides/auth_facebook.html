@@ -1,0 +1,26 @@
+<div class="click yes" ng-click="next('yes')"></div>
+<div class="click no" ng-click="next('no')"></div>
+
+<script eval type="text/javascript">
+  function(value) {
+    var res = false;
+    var parent = this.$parent.$parent;
+
+    switch (value) {
+      case "yes":
+        parent.log('Facebook authorized, redirecting to ' + parent.redirectTo.pass)
+        if (parent.oauth.facebook = "out-no-account")
+          parent.oauth.facebook = "in-no-account"
+        else 
+          parent.oauth.facebook = "in-has-account"
+        res = parent.redirectTo.pass
+        break;    
+      case "no":
+        parent.log('Facebook auth declined, redirecting to ' + parent.redirectTo.fail)
+        res = parent.redirectTo.fail
+        break;  
+    }
+
+    return res
+  }  
+</script>

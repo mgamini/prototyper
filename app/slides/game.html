@@ -1,0 +1,31 @@
+<div class="click startover" ng-click="next('startover')"></div>
+<div class="click gear" ng-click="next('gear')"></div>
+
+<script eval type="text/javascript"> 
+  
+  function(value) {
+    var res = false;
+    var parent = this.$parent.$parent
+    var map = { "iOS": "_gamecenter", "android": "_googleplay" }
+
+    switch (value) {
+      case "startover" :
+        this.$.os = "iOS"
+        parent.oauth = {
+          gamecenter: "out-no-account",
+          googleplay: "out-no-account",
+          facebook: "out-no-account"
+        }
+        parent.logs = [];
+        parent.data = {};
+
+        res = 'splash'
+        break;
+      case "gear" :
+        res = 'config'
+        break;
+    }
+
+    return res
+  }  
+</script>

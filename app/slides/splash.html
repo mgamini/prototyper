@@ -1,0 +1,27 @@
+<div class="full-slide click" ng-click="next()"></div>
+
+<script eval type="text/javascript">
+  function() {
+    var res = false;
+    var parent = this.$parent.$parent;
+    var map = { "iOS": "_gamecenter", "android": "_googleplay" }
+
+    for (var key in parent.oauth) {
+      if (!res && parent.oauth[key] === "in-has-account") {
+        parent.data = { accountId: Math.floor(Math.random() * 10000), oauth: {}}
+        parent.data.oauth[key] = Math.floor(Math.random() * 10000)
+        res = 'game';
+      } else if (!res && (parent.oauth[key].indexOf('out') > -1 )) {
+        parent.redirectTo = { pass: 'newaccount', fail: 'newaccount' }
+        res = 'auth' + map[parent.os]
+      }
+    }
+
+    if (!res) {
+      parent.data = { accountId: 'guestAcct'}
+      res = 'newaccount'
+    }
+
+    return res
+  }  
+</script>

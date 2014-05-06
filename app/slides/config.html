@@ -1,0 +1,43 @@
+<h1>My Account</h1>
+<form>
+  <fieldset>
+    <legend>Oauth Methods:</legend>
+    <h2>Facebook: 
+      <button ng-click="next('facebook')" ng-show="this.$parent.$parent.oauth.facebook == 'out-no-account' || this.$parent.$parent.oauth.facebook == 'out-has-account'">Log In</button>
+      <button ng-click="next('facebook')" ng-show="this.$parent.$parent.oauth.facebook == 'in-no-account' || this.$parent.$parent.oauth.facebook == 'in-has-account'">Log Out</button>
+    </h2>
+    <h2 ng-show="this.$parent.$parent.os == 'iOS'">Gamecenter: 
+      <button ng-click="next('gamecenter')" ng-show="this.$parent.$parent.oauth.gamecenter == 'out-no-account' || this.$parent.$parent.oauth.gamecenter == 'out-has-account'">Log In</button>
+      <button ng-click="next('gamecenter')" ng-show="this.$parent.$parent.oauth.gamecenter == 'in-no-account' || this.$parent.$parent.oauth.gamecenter == 'in-has-account'">Log Out</button>
+    </h2>    
+    <h2 ng-show="this.$parent.$parent.os == 'android'">Google Play: 
+      <button ng-click="next('googleplay')" ng-show="this.$parent.$parent.oauth.googleplay == 'out-no-account' || this.$parent.$parent.oauth.googleplay == 'out-has-account'">Log In</button>
+      <button ng-click="next('googleplay')" ng-show="this.$parent.$parent.oauth.googleplay == 'in-no-account' || this.$parent.$parent.oauth.googleplay == 'in-has-account'">Log Out</button>
+    </h2>      
+  </fieldset>
+</form>
+<button ng-click="next('backtogame')">&lt;- Back to game</button>
+
+<script eval>
+  
+function(value) {
+  var res = false;
+  var parent = this.$parent.$parent
+
+  switch (value) {
+    case "backtogame":
+      res = 'game'
+      break;
+    default: 
+      if (parent.oauth[value] === "out-has-account" || parent.oauth[value] === "out-no-account") {
+        parent.redirectTo = {pass: 'config', fail: 'config'}
+        res = 'auth_' + value;
+      } else {
+        parent.oauth[value] = "out-has-account"
+        res = 'config'
+      }
+      break; 
+  }
+  return res
+}
+</script>

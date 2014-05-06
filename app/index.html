@@ -5,9 +5,49 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body ng-controller="ProtoCtrl">
-  <slides class="ipad landscape"></slides>
+  <form id="options">
+    <fieldset>
+      <legend>Operating System:</legend>
+      <label><input type="radio" ng-model="os" value="iOS"> iOS</label>
+      <label><input type="radio" ng-model="os" value="android"> Android</label>
+    </fieldset>
+    <fieldset>
+      <legend>Oauth Method:</legend>
 
-  <json></json>  
+      <fieldset ng-show="os == 'iOS'">
+        <legend>Gamecenter</legend>
+        <label><input type="radio" ng-model="oauth.gamecenter" value="out-no-account"> Logged Out, no Acct</label>
+        <label><input type="radio" ng-model="oauth.gamecenter" value="out-has-account"> Logged Out, with Acct</label>
+        <label><input type="radio" ng-model="oauth.gamecenter" value="in-no-account"> Logged in, no Acct</label>
+        <label><input type="radio" ng-model="oauth.gamecenter" value="in-has-account"> Logged in, with Acct</label>
+      </fieldset>
+      <fieldset ng-show="os == 'android'">
+        <legend>Google Play</legend>
+        <label><input type="radio" ng-model="oauth.googleplay" value="out-no-account"> Logged Out, no Acct</label>
+        <label><input type="radio" ng-model="oauth.googleplay" value="out-has-account"> Logged Out, with Acct</label>
+        <label><input type="radio" ng-model="oauth.googleplay" value="in-no-account"> Logged in, no Acct</label>
+        <label><input type="radio" ng-model="oauth.googleplay" value="in-has-account"> Logged in, with Acct</label>
+      </fieldset>
+      <fieldset>
+        <legend>Facebook</legend>
+        <label><input type="radio" ng-model="oauth.facebook" value="out-no-account"> Logged Out, no Acct</label>
+        <label><input type="radio" ng-model="oauth.facebook" value="out-has-account"> Logged Out, with Acct</label>
+        <label><input type="radio" ng-model="oauth.facebook" value="in-no-account"> Logged in, no Acct</label>
+        <label><input type="radio" ng-model="oauth.facebook" value="in-has-account"> Logged in, with Acct</label>
+      </fieldset>
+    </fieldset>
+  </form>
+
+  <slides class="ipad landscape"></slides>
+  
+  <div class="group">
+    <h2>Logs</h2>
+    <ul id="log"><li ng-repeat="logitem in logs track by $index ">{{logitem}}</li></ul>
+  </div>
+  <div class="group">
+    <h2>Server Data</h2>
+    <json></json>  
+  </div>  
 
   <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
   <script type="text/javascript" src="./bower_components/angular-route/angular-route.min.js"></script>

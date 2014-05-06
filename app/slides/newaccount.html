@@ -1,0 +1,21 @@
+<div class="click go" ng-click="next('go')"></div>
+<div class="click gear" ng-click="next('retrieve')"></div>
+
+<script eval type="text/javascript"> 
+  
+  function(value) {
+    var res = false;
+    var map = { "iOS": "_gamecenter", "android": "_googleplay" }
+
+    switch (value) {
+      case "go" :
+        res = 'game'
+        break;
+      case "retrieve" :
+        res = 'auth' + map[this.$parent.$parent.os]
+        break;
+    }
+
+    return res
+  }  
+</script>

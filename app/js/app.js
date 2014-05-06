@@ -4,11 +4,33 @@ App.classy.controller({
   name: 'ProtoCtrl',
   inject: ['$scope', '$route', '$routeParams', '$location'],
   init: function() {
-    this.$._slides = ['slide_01', 'slide_02'];
+    this.$._slides = ['splash', 'newaccount', 'auth_googleplay', 'auth_gamecenter', 'auth_facebook', 'retrieve_googleplay', 'retrieve_gamecenter','game', 'config'];
     this.$.slides = [];
     this.$.slideMap = {};
     this.$.slidesLength = this.$._slides.length;
     this.$.current = 0;
+
+    this.$.logs = [];
+
+    this.$.log = function(msg) {
+      this.logs.unshift(msg);
+    }
+
+    this.$.data = {};
+
+    this.$.json = document.querySelector('json')
+
+    this.$.dataUpdate = function() {      
+      this.json.innerHTML = '';
+      createExplorer(this.data, this.json)
+    }
+
+    this.$.os = "iOS";
+    this.$.oauth = {
+      gamecenter: "out-no-account",
+      googleplay: "out-no-account",
+      facebook: "out-no-account"
+    }
   }
 })
 
@@ -49,6 +71,8 @@ App.directive('slides', function() {
           } else { // custom
             this.showSlide(this.slideMap[target])
           }
+
+          this.dataUpdate();
         }
       }
     }),
@@ -68,14 +92,14 @@ App.directive('slide', function() {
       init: function() {
         this.$.root = this.$.$parent.$parent;
         this.$.nextEval = function() { return true; };
-        this.$.next = function() {                    
-            this.$parent.root.next.call(this.$parent.root, this.$parent.nextEval());
+        this.$.next = function(value) {
+            this.$parent.root.next.call(this.$parent.root, this.$parent.nextEval(value));
           }
         }
     }),
     link: function(s,e,a) {      
       s.getSlideUrl = function() {
-        return '../slides/' + this.slide.slide + '.html';
+        return './slides/' + this.slide.slide + '.html';
       }
       s.deriveClass = function() { return 'slide-' + this.slide.slide }
     },
@@ -99,36 +123,37 @@ App.directive('eval', function() {
 
 
 
-App.directive('json', function() {
-  return {
-    restrict: 'E',    
-    controller: App.classy.controller({
-      inject: ['$scope', '$element', '$attrs'],
-      init: function() {
-        this.$.jsonEl = this.$element;
+// App.directive('json', function() {
+//   return {
+//     restrict: 'E',    
+//     controller: App.classy.controller({
+//       inject: ['$scope', '$element', '$attrs'],
+//       init: function() {
+//         this.$.jsonEl = this.$element;
 
-        this.$.showData = function() {
-          return JSON.stringify(this.data)
-        }
-        this.$.$watch('data', function(a,b,scope) {
-          scope.jsonEl.html('');
-          createExplorer(this.last, scope.jsonEl[0])
-        })
-      }
-    }),    
-    template: '<div></div>'
-  }
-})
+//         this.$.$watch('data', function(a,b,scope) {
+//           scope.jsonEl.html('');
+//           createExplorer(this.last, scope.jsonEl[0])
+//         })
+//       }
+//     }),    
+//     template: '<div></div>'
+//   }
+// })
 
 function createExplorer(obj, el) {
   el.innerHTML = '';
   el.className = "json-explorer"
 
-  el.addEventListener('click', function (e) {
-    if (e.target.classList.contains('parent')) {
-      e.target.classList.toggle('expanded')
-    }
-  })
+  if (!el.getAttribute('bound')) {
+    el.setAttribute('bound', true)
+    el.addEventListener('click', function (e) {      
+
+      if (e.target.classList.contains('parent')) {
+        e.target.classList.toggle('expanded')
+      }
+    })
+  }
 
   function buildList(parentObj, parentEl) {
     var rEl, rParent;

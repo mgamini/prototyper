@@ -1,0 +1,38 @@
+<div class="click android" ng-click="next('googleplay')"></div>
+<div class="click facebook" ng-click="next('facebook')"></div>
+
+<script eval type="text/javascript">
+  function(value) {
+    var res = false;
+    var parent = this.$parent.$parent;
+
+    switch (this.$parent.$parent.oauth[value]) {
+      case "out-has-account": 
+        parent.log('Device needs to log in to ' + value)
+        parent.redirectTo = 'game'
+        res = 'auth_' + value
+        break;
+      case "out-no-account": 
+        parent.log('Device needs to log in to ' + value)
+        parent.redirectTo = 'newAccount'
+        res = 'auth_' + value
+        break;
+
+      case "in-has-account" :
+        parent.data.oauth = {};
+        parent.data.oauth[value] = Math.floor(Math.random() * 100000)
+
+        parent.log('Account found for oauth ' + value + ', redirecting to game');
+        parent.oauth[value] = "in-has-account"
+        res = 'game'
+        break;
+
+      default:
+        parent.log('No account found for oauth ' + value + ', redirecting to new account');
+        res = 'newaccount';
+        break;
+    }
+
+    return res
+  }  
+</script>
