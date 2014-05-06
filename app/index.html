@@ -6,9 +6,16 @@
 </head>
 <body ng-controller="ProtoCtrl">
   <slides class="ipad landscape"></slides>
-
-  <json></json>  
-
+  
+  <div class="group">
+    <h2>Logs</h2>
+    <ul id="log"><li ng-repeat="logitem in logs track by $index ">{{logitem}}</li></ul>
+  </div>
+  <div class="group">
+    <h2>Server Data</h2>
+    <json></json>  
+  </div> 
+  
   <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
   <script type="text/javascript" src="./bower_components/angular-route/angular-route.min.js"></script>
   <script type="text/javascript" src="./bower_components/angular-classy/angular-classy.min.js"></script>

@@ -1,0 +1,15 @@
+<h1>Slide 3</h1>
+<button ng-click="next('slide_01')">Go to slide 1</button>
+<button ng-click="next('slide_02')">Go to slide 2</button>
+<button ng-click="next(true)">Go to the next slide</button>
+
+<script eval type="text/javascript">
+  function(value) {    
+    var parent = this.$parent.$parent;
+
+    parent.log('User clicked on: ' + value);
+    parent.data = {slide: value}
+
+    return value;
+  }  
+</script>

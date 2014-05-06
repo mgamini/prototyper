@@ -1,7 +1,13 @@
-<h1 ng-click="next()">stuff</h1>
+<h1>Slide 1</h1>
+<button ng-click="next()">next slide</button>
 
 <script eval type="text/javascript">
-  function() {    
+  function() {
+    var parent = this.$parent.$parent;
+
+    parent.log('you just jumped away from slide 1!');
+    parent.data = {slide: 1}
+    
     return true
   }  
 </script>

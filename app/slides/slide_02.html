@@ -1,8 +1,14 @@
-<style>
-  .slide-background {
-    background-color: rgb(100,100,100);
-  }
-</style>
-<div class="slide-background">
-  <h1 ng-click="next()"> otherstuff</h1>
+<div class="full-slide" ng-click="next(true)">
+  <h1>Slide 2</h1>
+  <p>click anywhere to go to the next slide</p>
 </div>
+
+<script eval type="text/javascript">
+  function(value) {
+    var parent = this.$parent.$parent;
+    
+    parent.data = {slide: 2}
+
+    return value
+  }  
+</script>
