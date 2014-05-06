@@ -1,10 +1,13 @@
+var _slides = ['slide_01', 'slide_02', 'slide_03'];
+
 var App = angular.module('proto', ['ngRoute', 'classy']);
 
 App.classy.controller({
   name: 'ProtoCtrl',
   inject: ['$scope', '$route', '$routeParams', '$location'],
   init: function() {
-    this.$._slides = ['slide_01', 'slide_02', 'slide_03'];
+    this.$._slides = _slides;
+
     this.$.slides = [];
     this.$.slideMap = {};
     this.$.slidesLength = this.$._slides.length;
